@@ -8,19 +8,26 @@ outEl.innerHTML += "<h1>Purchasing Agents</h1>";
     from each business and store it in a new array
 */
 const agents = businesses.map(business => {
-    return business.purchasingAgent
+  
+  const newObject = {}
 
+  newObject.fullName = `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameLast}`
+  newObject.company = `${business.companyName}`
+  newObject.phone =  `${business.phoneWork}` 
+
+  return newObject
 })
-
-const agentNumber = businesses.map(business => {
-    return business.phoneWork
-})
-
+//const agentNumber = businesses.forEach(business => {
+  //  return business.phoneWork
+//})
+//console.table(agentNumber)
 console.table(agents)
 //console.table(agentNumber)
 
-agents.forEach(agent => {
-  outEl.innerHTML += `<h2 id="details">${agent.nameFirst} ${agent.nameLast}</h2>`;
+agents.forEach(newObject => {
+  outEl.innerHTML += `<h2 id="details">${newObject.company}</h2>
+  <h3> <strong>${newObject.fullName}</strong></h3>
+  <h4> <u>${newObject.phone}</u></h4>`;
   outEl.innerHTML += "<hr/>";
 })
 
@@ -32,7 +39,7 @@ agentNumber.forEach(business => {
 //const outEl = document.querySelector("#details")
   businesses.forEach(business => {
       outEl.innerHTML += `
-      <sectoin>${business.phoneWork}</section>
+      <section>${business.phoneWork}</section>
       <section>
       ${business.addressCity}</section>`
   })
